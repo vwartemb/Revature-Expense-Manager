@@ -62,4 +62,25 @@ def submit_expense_menu(user):
         submit_new_expense(user[0], amount, description)
         print("Successfully submitted an expense!")
     except Exception as e:
-        print(f"Error submitting e
+        print(f"Error submitting expense: {e}")
+        return None
+    
+        
+def view_expenses_menu(user):
+    expenses = get_expenses_by_user(user[0])
+    if not expenses:
+        print("No expenses found")
+        return
+    print("\n--------------------------- My Expenses ------------------------")
+    for expense in expenses:
+        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]}")
+        
+    
+def edit_expense_menu(user):
+    print("\nEdit expense menu")
+    
+def delete_expense_menu(user):
+    print("\nDelete expense menu")
+    
+def view_history_menu(user):
+    print("\nView history menu")

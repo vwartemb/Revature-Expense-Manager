@@ -53,4 +53,3 @@ cursor.execute("INSERT OR IGNORE INTO expenses (user_id, amount, description, da
 cursor.execute("INSERT OR IGNORE INTO approvals (expense_id, status, reviewer, comment, review_date) values (?,?,?,?,?)", (1,'pending', None, None, None))
 conn.commit()
 conn.close()
-print("Database setup complete!")
