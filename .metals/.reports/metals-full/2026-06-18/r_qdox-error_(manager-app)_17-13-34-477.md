@@ -6,7 +6,7 @@ error in qdox parser
 file content:
 ```java
 offset: 0
-uri: file://<WORKSPACE>/manager-app/src/main/java/com/revature/Main.java
+uri: file://<WORKSPACE>/manager-app/src/main/java/com/revature/Launcher.java
 text:
 ```scala
 @@

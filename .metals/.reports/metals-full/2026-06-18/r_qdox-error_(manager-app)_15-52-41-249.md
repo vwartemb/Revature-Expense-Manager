@@ -6,7 +6,7 @@ error in qdox parser
 file content:
 ```java
 offset: 0
-uri: file://<WORKSPACE>/manager-app/src/main/java/com/revature/models/Approvals.java
+uri: file://<WORKSPACE>/manager-app/src/main/java/com/revature/models/Approval.java
 text:
 ```scala
 @@

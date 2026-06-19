@@ -1,6 +1,6 @@
 package com.revature.DAOs;
 
-import com.revature.models.Approvals;
+import com.revature.models.Approval;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public interface ApprovalDAOInterface {
     Approval getApprovalByExpenseId(int expenseId);
 
     // Approve/Deny an expense with a comment
-    boolean updateApproval(int expenseId, String status, int reviewerId, String comment);
+    boolean updateApproval(int expenseId, String status, int reviewer, String comment);
 
 
 }

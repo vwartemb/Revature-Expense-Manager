@@ -1,6 +1,6 @@
 package com.revature.models;
 
-class Approvals {
+class Approval {
     private int id;
     private int expenseId;
     private String status;
@@ -9,10 +9,10 @@ class Approvals {
     private String reviewDate;
 
     // Create an object approvals and add the methods later
-    public Approvals() {}
+    public Approval() {}
 
     // Read an approval and manipulate
-    public Approvals(int id, int expenseId, String status, int reviewer, String comment, String reviewDate) {
+    public Approval(int id, int expenseId, String status, int reviewer, String comment, String reviewDate) {
         this.id = id;
         this.expenseId = expenseId;
         this.status = status;
@@ -21,7 +21,7 @@ class Approvals {
         this.reviewDate = reviewDate;
     }
     // Insert an approval
-    public Approvals(int expenseId, String status, int reviewer, String comment, String reviewDate) {
+    public Approval(int expenseId, String status, int reviewer, String comment, String reviewDate) {
         this.expenseId = expenseId;
         this.status = status;
         this.reviewer = reviewer;
@@ -79,7 +79,7 @@ class Approvals {
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "Approvals{" +
+        return "Approval{" +
                 "id=" + id +
                 ", expenseId=" + expenseId +
                 ", status='" + status + '\'' +

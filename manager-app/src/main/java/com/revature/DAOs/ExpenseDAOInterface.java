@@ -17,7 +17,7 @@ public interface ExpenseDAOInterface {
     //ArrayList<Expense> getExpensesByCategory(int userId);
 
     //generate report by date
-    ArrayList<Expense> getExpenseByDat(String date);
+    ArrayList<Expense> getExpenseByDate(String date);
 
     // Get a single expense by its id -> for approving and denying
     Expense getExpenseById(int expenseId);
