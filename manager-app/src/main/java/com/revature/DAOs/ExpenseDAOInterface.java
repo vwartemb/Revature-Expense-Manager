@@ -1,0 +1,24 @@
+package com.revature.DAOs;
+
+import com.revature.models.Expense;
+
+import java.util.ArrayList;
+
+//here we will lay out functionalities that UserDAO will implement
+public interface ExpenseDAOInterface {
+
+    // view all pending expenses ( joins with approvals to filer by status)
+    ArrayList<Expense> getPendingExpenses();
+
+    // Generate report by employee
+    ArrayList<Expense> getExpensesByEmployee(int userId);
+
+    // Generate report by category? There is no field for this in the DB should i add it?
+    //ArrayList<Expense> getExpensesByCategory(int userId);
+
+    //generate report by date
+    ArrayList<Expense> getExpenseByDat(String date);
+
+    // Get a single expense by its id -> for approving and denying
+    Expense getExpenseById(int expenseId);
+}
