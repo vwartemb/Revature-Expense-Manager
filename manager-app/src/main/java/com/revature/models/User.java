@@ -1,7 +1,5 @@
 package com.revature.models;
 
-clapackage com.revature.models;
-
 public class User {
     private int  id;
     private String username;

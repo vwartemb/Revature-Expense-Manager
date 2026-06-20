@@ -1,6 +1,6 @@
 package com.revature.models;
 
-class Approval {
+public class Approval {
     private int id;
     private int expenseId;
     private String status;

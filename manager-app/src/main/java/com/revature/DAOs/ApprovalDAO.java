@@ -1,9 +1,15 @@
-import com.revature.DAOs;
-import java.util.ArrayList;
+package com.revature.DAOs;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+
 import com.revature.models.Approval;
 import com.revature.utils.ConnectionUtil;
 
-public class ApprovalDAO extends ApprovalDAOInterface{
+public class ApprovalDAO implements ApprovalDAOInterface{
 
     @Override
     public Approval getApprovalByExpenseId(int expenseId){

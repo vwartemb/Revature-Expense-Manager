@@ -36,11 +36,11 @@ public class Expense {
     }
 
     public int getUserId() {
-        return user_id;
+        return userId;
     }
 
     public void setUserId(int user_id) {
-        this.user_id = user_id;
+        this.userId = user_id;
     }
 
     public double getAmount() {

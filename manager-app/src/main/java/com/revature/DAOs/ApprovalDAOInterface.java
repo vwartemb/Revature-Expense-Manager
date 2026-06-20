@@ -2,7 +2,6 @@ package com.revature.DAOs;
 
 import com.revature.models.Approval;
 
-import java.util.ArrayList;
 
 /*
 * As a manager, I want to approve or deny submitted expenses so that I can
