@@ -6,7 +6,7 @@ Service layer: business logic only, no DB calls
 
 """
 
-from dao.expense_dao import submit_new_expense_dao, get_expenses_dao, edit_expense_dao, delete_expense_dao, get_expense_by_status
+from dao.expense_dao import submit_new_expense_dao, get_expenses_dao, edit_expense_dao, delete_expense_dao, get_expense_by_status, get_expense_history_dao
 
 # Validate the info given from the UI
 def submit_new_expense(user_id, amount, description):
@@ -46,3 +46,6 @@ def edit_expense(expense_id, user_id, new_amount, new_description):
 # We already did the check in DAO to avoid a round trip 
 def delete_expense(user_id, expense_id):
       return delete_expense_dao(user_id,expense_id)
+
+def get_expense_history(user_id):
+    return get_expense_history_dao(user_id)

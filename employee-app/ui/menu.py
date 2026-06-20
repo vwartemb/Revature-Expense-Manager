@@ -7,7 +7,7 @@ UI Layer: input/output only, no logic
 
 """
 from service.user_service import login
-from service.expense_service import submit_new_expense, get_expenses_dao, edit_expense, delete_expense, get_my_expenses
+from service.expense_service import submit_new_expense, get_expenses_dao, edit_expense, delete_expense, get_my_expenses, get_expense_history
 
 
 def login_menu():
@@ -69,9 +69,11 @@ def submit_expense_menu(user):
         
 def view_expenses_menu(user):
     expenses = get_expenses_dao(user[0])
+    
     if not expenses:
         print("No expenses found")
         return
+    
     print("\n--------------------------- My Expenses ------------------------")
     for expense in expenses:
         print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]}")
@@ -80,14 +82,15 @@ def view_expenses_menu(user):
 def edit_expense_menu(user):
     # show their pending expenses first so they know what to pick
     expenses = get_my_expenses(user[0])
+    
     if not expenses:
         print("No expenses found")
         return
+    
     print("\n--------------------------- My Expenses ------------------------")
     for expense in expenses:
         print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]}")
     
-    # ask for input and use that inpit to edit the expense
     expense_id = input("Enter the expense ID to edit: ")
     new_amount = input("Enter new amount: ")
     new_description = input("Enter new description: ")
@@ -128,6 +131,15 @@ def delete_expense_menu(user):
     else: 
         print("Invalid input. Please enter a numeric expense ID.")
         
-    
+
+# I think this works but i have to go on the manager side to test
 def view_history_menu(user):
-    print("\nView history menu")
+    expenses = get_expense_history(user[0])
+    
+    if not expenses:
+        print("No expenses found")
+        return
+    
+    print("\n--------------------------- My Expenses ------------------------")
+    for expense in expenses:
+        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]}")
