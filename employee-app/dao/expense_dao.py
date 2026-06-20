@@ -48,6 +48,31 @@ def get_expenses_dao(user_id):
         return None
     finally:
         conn.close()
+        
+def get_expense_by_status(user_id, status):
+    conn = get_connection()
+    try:
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT expenses.id, 
+                   expenses.amount, 
+                   expenses.description, 
+                   expenses.date, 
+                   approvals.status
+            FROM expenses
+            JOIN approvals ON approvals.expense_id = expenses.id
+            WHERE expenses.user_id = ?
+            AND approvals.status = ?
+        """, (user_id,status))
+        
+        result = cur.fetchall()
+        return result
+    except Exception as e:
+        print(f"Error retrieving {status} expenses: {e}")
+        return None
+    finally:
+        conn.close()
+    
 
 
 def edit_expense_dao(expense_id, user_id, new_amount, new_description):

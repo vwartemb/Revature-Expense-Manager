@@ -7,7 +7,8 @@ UI Layer: input/output only, no logic
 
 """
 from service.user_service import login
-from service.expense_service import submit_new_expense, get_expenses_dao, edit_expense
+from service.expense_service import submit_new_expense, get_expenses_dao, edit_expense, delete_expense, get_my_expenses
+
 
 def login_menu():
     attempts = 0
@@ -78,7 +79,7 @@ def view_expenses_menu(user):
     
 def edit_expense_menu(user):
     # show their pending expenses first so they know what to pick
-    expenses = get_expenses_dao(user[0])
+    expenses = get_my_expenses(user[0])
     if not expenses:
         print("No expenses found")
         return
@@ -103,7 +104,30 @@ def edit_expense_menu(user):
     
     
 def delete_expense_menu(user):
-    print("\nDelete expense menu")
+    # show their pending expenses first so they know what to pick
+    expenses = get_my_expenses(user[0], 'pending')
+    
+    if not expenses:
+        print("No expenses found")
+        return
+    
+    print("\n--------------------------- My Expenses ------------------------")
+    for expense in expenses:
+        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]}")
+    
+    expense_id = input("Enter the expense ID to delete: ")
+    
+    if expense_id.isdigit():
+        result = delete_expense(user[0], expense_id)
+        if result is True:
+            print("Expense deleted successfully!")
+        elif result is False:
+            print("Could not delete - this expense may not belong to you, or is no longer pending.")
+        else:
+            print("An error occurred while deleting the expense.")
+    else: 
+        print("Invalid input. Please enter a numeric expense ID.")
+        
     
 def view_history_menu(user):
     print("\nView history menu")
