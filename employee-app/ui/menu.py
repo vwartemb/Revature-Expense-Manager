@@ -7,7 +7,7 @@ UI Layer: input/output only, no logic
 
 """
 from service.user_service import login
-from service.expense_service import submit_new_expense, get_expenses_by_user
+from service.expense_service import submit_new_expense, get_expenses_dao, edit_expense
 
 def login_menu():
     attempts = 0
@@ -67,7 +67,7 @@ def submit_expense_menu(user):
     
         
 def view_expenses_menu(user):
-    expenses = get_expenses_by_user(user[0])
+    expenses = get_expenses_dao(user[0])
     if not expenses:
         print("No expenses found")
         return
@@ -77,7 +77,30 @@ def view_expenses_menu(user):
         
     
 def edit_expense_menu(user):
-    print("\nEdit expense menu")
+    # show their pending expenses first so they know what to pick
+    expenses = get_expenses_dao(user[0])
+    if not expenses:
+        print("No expenses found")
+        return
+    print("\n--------------------------- My Expenses ------------------------")
+    for expense in expenses:
+        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]}")
+    
+    # ask for input and use that inpit to edit the expense
+    expense_id = input("Enter the expense ID to edit: ")
+    new_amount = input("Enter new amount: ")
+    new_description = input("Enter new description: ")
+    
+    result = edit_expense(expense_id, user[0], new_amount, new_description)
+    
+    if result is True:
+        print("Expense updated successfully!")
+    elif result is False:
+        print("Could not update - this expense may not belong to you, or is no longer pending.")
+    else:
+        print("Invalid amount entered.")
+    
+    
     
 def delete_expense_menu(user):
     print("\nDelete expense menu")

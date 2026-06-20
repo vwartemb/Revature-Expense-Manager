@@ -1,5 +1,5 @@
 """
-dao layer: only taks to the database (no logic)
+dao layer: only talks to the database (no logic)
 
 Insert, Select, update, and delete expenses
 
@@ -26,7 +26,7 @@ def submit_new_expense_dao(user_id, amount, description):
         conn.close()
 
 # view the status of ALL of my expenses given a user_id
-def get_expenses_by_user(user_id):
+def get_expenses_dao(user_id):
     conn = get_connection()
     try:
         cur = conn.cursor()
@@ -50,7 +50,7 @@ def get_expenses_by_user(user_id):
         conn.close()
 
 
-def edit_expense_by_status(expense_id, user_id, new_amount, new_description):
+def edit_expense_dao(expense_id, user_id, new_amount, new_description):
     conn = get_connection()
     try:
         cur = conn.cursor()
@@ -77,8 +77,8 @@ def edit_expense_by_status(expense_id, user_id, new_amount, new_description):
         
         # Run the update
         cur.execute("""
-            UPDATE expenses,
-            SET amount = ?, description = ?,
+            UPDATE expenses
+            SET amount = ?, description = ?
             WHERE id = ?
             AND user_id = ?
         """, (new_amount, new_description, expense_id, user_id))

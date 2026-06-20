@@ -6,7 +6,7 @@ Service layer: business logic only, no DB calls
 
 """
 
-from dao.expense_dao import submit_new_expense_dao, get_expenses_by_user
+from dao.expense_dao import submit_new_expense_dao, get_expenses_dao, edit_expense_dao
 
 # Validate the info given from the UI
 def submit_new_expense(user_id, amount, description):
@@ -24,5 +24,17 @@ def submit_new_expense(user_id, amount, description):
 
 # Just retrieving info so no validation required
 def get_my_expenses(user_id):
-    return get_expenses_by_user(user_id)
+    return get_expenses_dao(user_id)
+
+def edit_expense(expense_id, user_id, new_amount, new_description):
+    try: 
+        if float(new_amount) < 0 :
+            return False 
+        if not new_description or not new_description.strip(): 
+            return False
+        edit_expense_dao(expense_id, user_id, new_amount, new_description)
+        return True
+    except ValueError as e:
+        print(f"Error couldn't convert {new_amount} to float: {e}")
+        return None
 
