@@ -6,7 +6,7 @@ Service layer: business logic only, no DB calls
 
 """
 
-from dao.expense_dao import submit_new_expense_dao, get_expenses_by_user
+from dao.expense_dao import submit_new_expense_dao, get_expenses_dao
 
 # Validate the info given from the UI
 def submit_new_expense(user_id, amount, description):
@@ -24,5 +24,5 @@ def submit_new_expense(user_id, amount, description):
 
 # Just retrieving info so no validation required
 def get_my_expenses(user_id):
-    return get_expenses_by_user(user_id)
+    return get_expenses_dao(user_id)
 

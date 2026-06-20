@@ -26,7 +26,7 @@ def submit_new_expense_dao(user_id, amount, description):
         conn.close()
 
 # view the status of ALL of my expenses given a user_id
-def get_expenses_by_user(user_id):
+def get_expenses_dao(user_id):
     conn = get_connection()
     try:
         cur = conn.cursor()

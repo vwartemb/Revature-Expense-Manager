@@ -92,3 +92,40 @@ def edit_expense_dao(expense_id, user_id, new_amount, new_description):
     finally:
         conn.close()
     
+def delete_expense_dao(user_id, expense_id):
+    conn = get_connection()
+    try:
+        cur = conn.cursor()
+        
+        # Check if expense exists and is still pending
+        cur.execute("""
+            SELECT approvals.status
+            FROM approvals
+            JOIN expenses ON approvals.expense_id = expenses.id
+            WHERE expenses.id = ?
+            AND expenses.user_id = ?
+        """, (expense_id, user_id))
+        
+        result = cur.fetchone()
+        
+        # If no expense found or not pending, return false
+        if result is None:
+            print("Expense not found")
+            return False
+        if result[0] != 'pending':
+            print("Can only delete pending expenses")
+            return False
+        
+        # Delete the approval record first (dependent table)
+        cur.execute("DELETE from approvals WHERE expense_id = ?", (expense_id,))
+        
+        # Then the expense itself
+        cur.execute("DELETE FROM expenses WHERE user_id = ? AND id = ?", (user_id, expense_id))
+        
+        conn.commit()
+        return True
+    except Exception as e:
+        print(f"Error deleting expense: {e}")
+        return None
+    finally: 
+        conn.close()

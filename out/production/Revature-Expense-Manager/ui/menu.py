@@ -7,7 +7,7 @@ UI Layer: input/output only, no logic
 
 """
 from service.user_service import login
-from service.expense_service import submit_new_expense, get_expenses_by_user
+from service.expense_service import submit_new_expense, get_expenses_dao
 
 def login_menu():
     attempts = 0
@@ -67,7 +67,7 @@ def submit_expense_menu(user):
     
         
 def view_expenses_menu(user):
-    expenses = get_expenses_by_user(user[0])
+    expenses = get_expenses_dao(user[0])
     if not expenses:
         print("No expenses found")
         return
