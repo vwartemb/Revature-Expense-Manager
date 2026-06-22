@@ -6,7 +6,7 @@ Output should be: (1, "vanessa", "hashedpassword123", "employee")
 
 """
 from dao.user_dao import find_user_by_username
-import hashlib
+import bcrypt
 
 def login(username, password):
     try:
@@ -15,10 +15,10 @@ def login(username, password):
         if user is None: # for "None" always use "is" 
             return None
         
-        hashed_pass = hashlib.sha256(password.encode()).hexdigest()
-        
-        if hashed_pass == user[2]:
+        if bcrypt.checkpw(password.encode(), user[2].encode()):
             return user
+        else:
+            return None
         
     except Exception as e:
         print(f"Error logging the user in: {e}")
