@@ -9,14 +9,14 @@ Service layer: business logic only, no DB calls
 from dao.expense_dao import submit_new_expense_dao, get_expenses_dao
 
 # Validate the info given from the UI
-def submit_new_expense(user_id, amount, description):
+def submit_new_expense(user_id, amount, description, category):
     try:
         if float(amount) <= 0:
             return False
         # if description is none or if its "  "
         if not description or not description.strip(): 
             return False
-        submit_new_expense_dao(user_id, amount, description)
+        submit_new_expense_dao(user_id, amount, description, category)
         return True
     except ValueError as e:
         print(f"Error couldn't convert {amount} to float: {e}")

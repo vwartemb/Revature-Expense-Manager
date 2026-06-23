@@ -59,8 +59,9 @@ def employee_menu(user):
 def submit_expense_menu(user):
     amount = str(input("Enter Amount: "))
     description = input("Enter Description: ")
+    category = input("Enter Category (optional): ")
     try:
-        submit_new_expense(user[0], amount, description)
+        submit_new_expense(user[0], amount, description, category)
         print("Successfully submitted an expense!")
     except Exception as e:
         print(f"Error submitting expense: {e}")
@@ -76,7 +77,7 @@ def view_expenses_menu(user):
     
     print("\n--------------------------- My Expenses ------------------------")
     for expense in expenses:
-        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]}")
+        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]} | Category: {expense[5]}")
         
     
 def edit_expense_menu(user):
@@ -89,7 +90,7 @@ def edit_expense_menu(user):
     
     print("\n--------------------------- My Expenses ------------------------")
     for expense in expenses:
-        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]}")
+        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]} | Category: {expense[5]}")
     
     expense_id = input("Enter the expense ID to edit: ")
     new_amount = input("Enter new amount: ")
@@ -116,7 +117,7 @@ def delete_expense_menu(user):
     
     print("\n--------------------------- My Expenses ------------------------")
     for expense in expenses:
-        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]}")
+        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]} | Category: {expense[5]}")
     
     expense_id = input("Enter the expense ID to delete: ")
     
@@ -142,4 +143,4 @@ def view_history_menu(user):
     
     print("\n--------------------------- My Expenses ------------------------")
     for expense in expenses:
-        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]}")
+        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]} | Category: {expense[5]}")

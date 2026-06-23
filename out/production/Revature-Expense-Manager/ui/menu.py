@@ -59,7 +59,7 @@ def submit_expense_menu(user):
     amount = str(input("Enter Amount: "))
     description = input("Enter Description: ")
     try:
-        submit_new_expense(user[0], amount, description)
+        submit_new_expense(user[0], amount, description, category)
         print("Successfully submitted an expense!")
     except Exception as e:
         print(f"Error submitting expense: {e}")
@@ -73,7 +73,7 @@ def view_expenses_menu(user):
         return
     print("\n--------------------------- My Expenses ------------------------")
     for expense in expenses:
-        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]}")
+        print(f"ID: {expense[0]} | Amount: ${expense[1]} | Description: {expense[2]} | Date: {expense[3]} | Status: {expense[4]} | category: {expense[5]}")
         
     
 def edit_expense_menu(user):

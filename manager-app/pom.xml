@@ -7,6 +7,12 @@
   <version>1.0-SNAPSHOT</version>
   <name>manager-app</name>
   <url>http://maven.apache.org</url>
+
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -24,10 +30,12 @@
 
     <!-- Javalin dependency to process HTTP requests -->
     <!-- Source: https://mvnrepository.com/artifact/io.javalin/javalin -->
+    <!-- Source: https://mvnrepository.com/artifact/io.javalin/javalin -->
     <dependency>
       <groupId>io.javalin</groupId>
       <artifactId>javalin</artifactId>
       <version>7.2.2</version>
+      <scope>compile</scope>
     </dependency>
     <!-- Javalin helper dependency (a logger called slf4j) -->
     <!-- Source: https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
@@ -43,6 +51,13 @@
       <artifactId>jackson-databind</artifactId>
       <version>2.22.0</version>
     </dependency>
+
+    <dependency>
+      <groupId>at.favre.lib</groupId>
+      <artifactId>bcrypt</artifactId>
+      <version>0.10.2</version>
+    </dependency>
+
 
   </dependencies>
 </project>

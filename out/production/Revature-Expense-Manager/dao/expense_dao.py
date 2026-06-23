@@ -8,14 +8,14 @@ from db.connection import get_connection
 import datetime
 
 
-def submit_new_expense_dao(user_id, amount, description):
+def submit_new_expense_dao(user_id, amount, description, category):
     conn = get_connection()
     try:
         cur = conn.cursor()
         date = str(datetime.date.today())
         # everytime you submit a new expense you also have to need it to get approved
-        cur.execute(" INSERT INTO expenses (user_id, amount, description, date) values (?,?,?,?)",
-                    (user_id, amount, description, date))
+        cur.execute(" INSERT INTO expenses (user_id, amount, description, date, category) values (?,?,?,?,?)",
+                    (user_id, amount, description, date, category))
         cur.execute(" INSERT INTO approvals (expense_id, status) values (?,?)",
                     (cur.lastrowid, 'pending'))
         conn.commit()
@@ -35,7 +35,8 @@ def get_expenses_dao(user_id):
                    expenses.amount, 
                    expenses.description, 
                    expenses.date, 
-                   approvals.status
+                   approvals.status,
+                   expenses.category
             FROM expenses
             JOIN approvals ON approvals.expense_id = expenses.id
             WHERE expenses.user_id = ?

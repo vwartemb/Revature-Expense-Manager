@@ -25,7 +25,7 @@ cursor.execute("""
                    amount REAL NOT NULL,
                    description TEXT NOT NULL,
                    date TEXT NOT NULL,
-                   category TEXT NOT NULL,
+                   category TEXT,
                    
                    FOREIGN KEY (user_id) REFERENCES users(id) 
                    )

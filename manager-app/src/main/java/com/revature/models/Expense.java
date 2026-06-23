@@ -6,25 +6,28 @@ public class Expense {
     private double amount;
     private String description;
     private String date;
+    private String category;
 
     // When i want just the object first
     public Expense() {}
 
     // When  i want to just retrieve data
-    public Expense(int id, int userId, double amount, String description, String date) {
+    public Expense(int id, int userId, double amount, String description, String date, String category) {
         this.id = id;
         this.userId = userId;
         this.amount = amount;
         this.description = description;
         this.date = date;
+        this.category = category;
     }
 
     // When i want to insert data
-    public Expense(int userId, double amount, String description, String date) {
+    public Expense(int userId, double amount, String description, String date, String category) {
         this.userId = userId;
         this.amount = amount;
         this.description = description;
         this.date = date;
+        this.category = category;
     }
 
     public int getId() {
@@ -66,6 +69,14 @@ public class Expense {
     public void setDate(String date) {
         this.date = date;
     }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
 
     @java.lang.Override
     public java.lang.String toString() {
@@ -75,6 +86,7 @@ public class Expense {
                 ", amount=" + amount +
                 ", description='" + description + '\'' +
                 ", date='" + date + '\'' +
+                ", category=" + category  + '\'' +
                 '}';
     }
 }
