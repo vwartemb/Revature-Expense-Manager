@@ -3,10 +3,6 @@ package com.revature.controllers;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 import com.revature.DAOs.UserDAO;
-
-import at.favre.lib.crypto.bcrypt.BCrypt;
-
-import com.revature.DAOs.UserDAO;
 import com.revature.models.User;
 
 import io.javalin.http.Handler;
